@@ -1,0 +1,47 @@
+<h>
+Расход сырья на производство проволоки, кг
+</h>
+<c>
+192.168.1.10
+neo_rtx
+QPSQL7
+user
+szsm
+</c>
+<a>
+Марка
+Диаметр
+Плавка
+Партия
+Поставщик
+Гот. партия
+Гот. марка
+Гот. диам.
+Гот. намот
+год
+месяц
+день
+</a>
+<q>
+select pr.nam, d.sdim, b.n_plav, b.parti, s.short, 
+m.n_s||'-'||date_part('year',m.dat), prg.nam, dg.sdim, k.short,
+substr(cast(i.dat as char(32)),1,4) as yr,
+substr(cast(i.dat as char(32)),1,7) as mn,
+substr(cast(i.dat as char(32)),1,10) as dy,
+i.m_netto*pr.kr/1000.0 as rac
+from wire_in_cex_data as i
+inner join wire_parti as p on p.id=i.id_wparti
+inner join wire_parti_m as m on p.id_m=m.id
+inner join prov_buht as b on m.id_buht=b.id
+inner join prov_prih as pp on b.id_prih=pp.id
+inner join provol as pr on pp.id_pr=pr.id
+inner join diam as d on pp.id_dim=d.id
+inner join suppl as s on pp.id_spl=s.id
+inner join provol as prg on m.id_provol=prg.id
+inner join diam as dg on m.id_diam=dg.id
+inner join wire_pack_kind as k on p.id_pack=k.id
+where (i.id_type=3 or i.id_type=18) and i.dat between :d1 and :d2
+</q>
+<p>
+3
+</p>

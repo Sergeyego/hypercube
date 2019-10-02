@@ -1,0 +1,68 @@
+<h>
+Упаковка, тонн (дата упаковки)
+</h>
+<c>
+192.168.1.10
+neo_rtx
+QPSQL7
+user
+szsm
+</c>
+<a>
+группа
+марка
+диаметр
+партия
+источник
+рецептура
+год
+месяц
+день
+</a>
+<q>
+select nam,marka,cast(diam as varchar(3)) as dm,n_s,ist,part.rcp,
+substr(cast(pack.dat as char(32)),1,4) as yr,
+substr(cast(pack.dat as char(32)),1,7) as mn,
+substr(cast(pack.dat as char(32)),1,10) as dy,
+upk/1000.0
+from
+(
+select p.id, nk.dat, pk.kvo as upk, i.nam as ist
+from parti p 
+inner join parti_pack pk on p.id=pk.id_part
+inner join parti_nakl nk on nk.id=pk.id_nakl
+inner join istoch i on p.id_ist=i.id
+where nk.dat between :d1 and :d2
+union
+select p.id, nk.dat, coalesce(pk.kvo,0.0)-coalesce(pk.kvo_break,0.0) as upk, i.nam as ist
+from parti p 
+inner join parti_perepack pk on p.id=pk.id_new_part
+inner join parti_nakl nk on nk.id=pk.id_nakl
+inner join istoch i on p.id_ist=i.id
+where nk.dat between :d1 and :d2
+union
+select p.id, nk.dat, coalesce(pk.kvo_break,0.0) as upk, 'брак перепак' as ist
+from parti p 
+inner join parti_perepack pk on p.id=pk.id_new_part
+inner join parti_nakl nk on nk.id=pk.id_nakl
+where nk.dat between :d1 and :d2
+union
+select p.id, nk.dat, kvo as upk, 'брак уп-ка' as ist
+from parti p 
+inner join parti_break br on p.id=br.id_part
+inner join parti_nakl nk on nk.id=br.id_nakl 
+where nk.dat between :d1 and :d2
+)as pack
+inner join
+(select p.id, p.n_s, p.diam, e.marka, t.nam, coalesce(r.nam,' ') as rcp
+from parti p 
+inner join elrtr e on e.id=p.id_el
+inner join el_types t on t.id = e.id_vid
+left join rcp_nam r on r.id=p.id_rcp
+) as part
+on pack.id=part.id
+where upk!=0.0
+</q>
+<p>
+6
+</p>

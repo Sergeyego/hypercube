@@ -1,0 +1,37 @@
+<h>
+Производство электродов (з.пл), тонн
+</h>
+<c>
+192.168.1.10
+neo_rtx
+QPSQL7
+user
+szsm
+</c>
+<a>
+Группа
+Партия
+Марка
+Диаметр
+Бригадир
+год
+месяц
+день
+</a>
+<q>
+select t.nam, j.parti, e.marka, cast(n.dim as varchar), r.snam, 
+substr(cast(j.datf as char(32)),1,4) as yr,
+substr(cast(j.datf as char(32)),1,7) as mn,
+substr(cast(j.datf as char(32)),1,10) as dy,
+j.kvo
+from rab_job j inner join rab_nams n on n.lid = j.lid
+inner join elrtr e on e.id=n.id_el
+inner join rab_rab r on r.id = j.id_rb
+inner join rab_liter l on l.id=n.id
+inner join el_types t on e.id_vid=t.id
+where l.grp=21
+and j.datf between :d1 and :d2
+</q>
+<p>
+4
+</p>

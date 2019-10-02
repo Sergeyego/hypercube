@@ -1,0 +1,45 @@
+<h>
+Производство проволоки, тонн
+</h>
+<c>
+192.168.1.10
+neo_rtx
+QPSQL7
+user
+szsm
+</c>
+<a>
+Смена
+Работник
+Оборуд.
+Вид работ
+Марка
+Диаметр
+Намотка
+год
+месяц
+день
+</a>
+<q>
+select s.name, e.first_name || ' '||e.last_name || ' '|| e.middle_name,
+o.snam, l.naim, p.nam, d.sdim, k.short,
+substr(cast(j.dat as char(32)),1,4) as yr,
+substr(cast(j.dat as char(32)),1,7) as mn,
+substr(cast(j.dat as char(32)),1,10) as dy,
+j.kvo
+from wire_rab_job as j
+inner join wire_rab_nams as n on j.lid=n.lid
+inner join wire_rab_liter as l on l.id=n.id
+inner join provol as p on p.id=n.id_prov
+inner join diam as d on d.id=n.id_diam
+inner join wire_pack_kind as k on k.id=n.id_pack
+inner join wire_smena as s on s.id=j.id_sm
+inner join wire_line as o on o.id=j.id_line
+inner join wire_empl as e on e.id=j.id_rb 
+where l.id_zon<>5 and l.id_zon<>6 
+and l.id<>18 and l.id<>19 and l.id<>20 
+and j.dat between :d1 and :d2
+</q>
+<p>
+3
+</p>
