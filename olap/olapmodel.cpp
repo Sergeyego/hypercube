@@ -1,12 +1,13 @@
 #include "olapmodel.h"
 
 OlapModel::OlapModel(QStringList axes, int dec, QObject *parent) :
-    QAbstractTableModel(parent), decimal(dec)
+    QAbstractTableModel(parent)
 {
-    tSum = new Sum(tr("Сумма"));
-    tAvg = new Avg(tr("Среднее"));
-    tMin = new Min(tr("Минимум"));
-    tMax = new Max(tr("Максимум"));
+    decimal=dec;
+    tSum = new Sum(tr("Сумма"),this);
+    tAvg = new Avg(tr("Среднее"),this);
+    tMin = new Min(tr("Минимум"),this);
+    tMax = new Max(tr("Максимум"),this);
     pTtl=tSum;
     hCube = new hyper_cube;
     n=axes.size();
@@ -18,18 +19,14 @@ OlapModel::OlapModel(QStringList axes, int dec, QObject *parent) :
 OlapModel::~OlapModel()
 {
     delete hCube;
-    delete tSum;
-    delete tAvg;
-    delete tMin;
-    delete tMax;
 }
 
-int OlapModel::rowCount(const QModelIndex &parent) const
+int OlapModel::rowCount(const QModelIndex& /*parent*/) const
 {
     return (xJ.size() && yI.size())? hCube->Ny+xJ.size() : 0;
 }
 
-int OlapModel::columnCount(const QModelIndex &parent) const
+int OlapModel::columnCount(const QModelIndex& /*parent*/) const
 {
     return (yI.size() && xJ.size())? hCube->Nx+yI.size() : 0;
 }
@@ -114,9 +111,8 @@ void OlapModel::refresh()
         hCube->make_proj(yI,xJ,pTtl);
     }
     endResetModel();
-    emit headerDataChanged(Qt::Horizontal,0,this->columnCount()-1);
-    emit headerDataChanged(Qt::Vertical,0,this->rowCount()-1);
-    emit sigUpd();
+    emit headerDataChanged(Qt::Vertical,0,rowCount()-1);
+    emit sigRefresh();
 }
 
 void OlapModel::setTypeSum(bool b)

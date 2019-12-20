@@ -3,7 +3,7 @@
 
 #include <QAbstractTableModel>
 #include <QVector>
-#include <cubic.h>
+#include "cubic.h"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QMessageBox>
@@ -15,14 +15,14 @@ class OlapModel : public QAbstractTableModel
 public:
     explicit OlapModel(QStringList axes, int dec, QObject *parent = 0);
     ~OlapModel();
-    int rowCount(const QModelIndex &parent=QModelIndex()) const;
-    int columnCount(const QModelIndex &parent=QModelIndex()) const;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
     void setQuery(QString qu);
     
 signals:
-    void sigUpd();
+    void sigRefresh();
     
 public slots:
     void refresh();

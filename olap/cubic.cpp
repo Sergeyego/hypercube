@@ -168,15 +168,15 @@ int hyper_cube::make_proj(i_dims Y, i_dims X, Ttl* pTtl){
     return 0;
 }
 
-Ttl::Ttl(QString n){name=n;}
-Sum::Sum(QString n):Ttl(n){}
-Avg::Avg(QString n):Sum(n){}
-Max::Max(QString n):Sum(n){}
-Min::Min(QString n):Sum(n){}
+Ttl::Ttl(QString n, QObject *parent) : QObject(parent){name=n;}
+Sum::Sum(QString n, QObject *parent):Ttl(n,parent){}
+Avg::Avg(QString n, QObject *parent):Sum(n,parent){}
+Max::Max(QString n, QObject *parent):Sum(n,parent){}
+Min::Min(QString n, QObject *parent):Sum(n,parent){}
 QString Ttl::getName(){return name;}
 void Ttl::setR(double R){r=R;}
 void Sum::updR(double E){r+=E;}
 void Max::updR(double E){if(E>r)r=E;}
 void Min::updR(double E){if(E<r)r=E;}
-double Sum::getR(int N){return r;}
+double Sum::getR(int /*N*/){return r;}
 double Avg::getR(int N){return r/N;}

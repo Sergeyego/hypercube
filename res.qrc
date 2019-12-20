@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>cube.png</file>
-        <file>down.png</file>
-        <file>up.png</file>
+        <file>images/down.png</file>
+        <file>images/icon.ico</file>
+        <file>images/up.png</file>
     </qresource>
 </RCC>

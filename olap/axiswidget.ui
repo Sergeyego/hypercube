@@ -38,8 +38,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="res.qrc">
-         <normaloff>:/up.png</normaloff>:/up.png</iconset>
+        <iconset theme="go-up" resource="res.qrc">
+         <normaloff>:/images/up.png</normaloff>:/images/up.png</iconset>
        </property>
       </widget>
      </item>
@@ -49,8 +49,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="res.qrc">
-         <normaloff>:/down.png</normaloff>:/down.png</iconset>
+        <iconset theme="go-down" resource="res.qrc">
+         <normaloff>:/images/down.png</normaloff>:/images/down.png</iconset>
        </property>
       </widget>
      </item>

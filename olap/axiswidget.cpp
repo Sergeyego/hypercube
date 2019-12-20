@@ -6,7 +6,10 @@ AxisWidget::AxisWidget(QStringList axis, QWidget *parent) :
     ui(new Ui::AxisWidget)
 {
     ui->setupUi(this);
-    for (unsigned int i=0; i<axis.size(); ++i) {
+    ui->cmdUp->setIcon(QIcon(QApplication::style()->standardIcon(QStyle::SP_ArrowUp)));
+    ui->cmdDown->setIcon(QIcon(QApplication::style()->standardIcon(QStyle::SP_ArrowDown)));
+
+    for (int i=0; i<axis.size(); ++i) {
         QListWidgetItem *item = new QListWidgetItem();
         item->setData(Qt::EditRole,i);
         item->setData(Qt::DisplayRole,axis.at(i));
