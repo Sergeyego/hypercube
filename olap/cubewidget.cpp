@@ -100,5 +100,5 @@ void CubeWidget::updQuery()
 
 void CubeWidget::saveXls()
 {
-    ui->tableView->save(this->windowTitle()+tr(" с ")+ui->dateEditBeg->date().toString("dd.MM.yy")+tr(" по ")+ui->dateEditEnd->date().toString("dd.MM.yy"));
+    ui->tableView->save(this->windowTitle()+QString::fromUtf8(" с ")+ui->dateEditBeg->date().toString("dd.MM.yy")+QString::fromUtf8(" по ")+ui->dateEditEnd->date().toString("dd.MM.yy"));
 }
