@@ -4,10 +4,10 @@ OlapModel::OlapModel(QStringList axes, int dec, QObject *parent) :
     QAbstractTableModel(parent)
 {
     decimal=dec;
-    tSum = new Sum(tr("Сумма"),this);
-    tAvg = new Avg(tr("Среднее"),this);
-    tMin = new Min(tr("Минимум"),this);
-    tMax = new Max(tr("Максимум"),this);
+    tSum = new Sum(QString::fromUtf8("Сумма"),this);
+    tAvg = new Avg(QString::fromUtf8("Среднее"),this);
+    tMin = new Min(QString::fromUtf8("Минимум"),this);
+    tMax = new Max(QString::fromUtf8("Максимум"),this);
     pTtl=tSum;
     hCube = new hyper_cube;
     n=axes.size();

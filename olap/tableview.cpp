@@ -121,9 +121,9 @@ void TableView::save(QString fnam)
 
         QSettings settings("szsm", QApplication::applicationName());
         QDir dir(settings.value("savePath",QDir::homePath()).toString());
-        QString filename = QFileDialog::getSaveFileName(this,tr("Сохранить документ"),
+        QString filename = QFileDialog::getSaveFileName(this,QString::fromUtf8("Сохранить документ"),
                                                         dir.path()+"/"+fnam+".xls",
-                                                        tr("Documents (*.xls)") );
+                                                        QString::fromUtf8("Documents (*.xls)") );
         if (!filename.isEmpty()){
             QFile file(filename);
             if (file.exists()) file.remove();

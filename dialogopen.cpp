@@ -14,7 +14,7 @@ DialogOpen::DialogOpen(QWidget *parent) :
     } else {
         ui->tableView->setModel(model);
         model->setHeaderData(0,Qt::Horizontal,QString("Id"));
-        model->setHeaderData(1,Qt::Horizontal,QString("Название"));
+        model->setHeaderData(1,Qt::Horizontal,QString::fromUtf8("Название"));
         for (int i=2; i<model->columnCount();i++){
             ui->tableView->setColumnHidden(i,true);
         }
