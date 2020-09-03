@@ -12,6 +12,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = hypercube
 TEMPLATE = app
 
+include(xlsx/qtxlsx.pri)
 
 SOURCES += main.cpp \
     olap/axiswidget.cpp \
@@ -28,9 +29,6 @@ HEADERS  += \
     olap/olapmodel.h \
     olap/tableview.h \
     dialogopen.h
-
-INCLUDEPATH+=/usr/include/xlslib
-LIBS+= -lxls
 
 FORMS    += \
     olap/axiswidget.ui \

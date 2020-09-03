@@ -26,6 +26,7 @@ private:
     QString query;
     AxisWidget *axisX;
     AxisWidget *axisY;
+    int decimal;
 
 
 private slots:

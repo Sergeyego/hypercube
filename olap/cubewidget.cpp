@@ -58,6 +58,7 @@ void CubeWidget::inital(QString head, QStringList axes, QString qu, int dec)
     ui = new Ui::CubeWidget;
     ui->setupUi(this);
     query=qu;
+    decimal=dec;
     ui->cmdUpd->setIcon(QIcon(QApplication::style()->standardIcon(QStyle::SP_BrowserReload)));
     ui->cmdSave->setIcon(QIcon(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton)));
 
@@ -100,5 +101,5 @@ void CubeWidget::updQuery()
 
 void CubeWidget::saveXls()
 {
-    ui->tableView->save(this->windowTitle()+QString::fromUtf8(" с ")+ui->dateEditBeg->date().toString("dd.MM.yy")+QString::fromUtf8(" по ")+ui->dateEditEnd->date().toString("dd.MM.yy"));
+    ui->tableView->save(this->windowTitle()+QString::fromUtf8(" с ")+ui->dateEditBeg->date().toString("dd.MM.yy")+QString::fromUtf8(" по ")+ui->dateEditEnd->date().toString("dd.MM.yy"),decimal);
 }
