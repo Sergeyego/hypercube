@@ -42,5 +42,6 @@ RC_FILE = app.rc
 RESOURCES += \
     res.qrc
 
-DISTFILES +=
+DISTFILES += \
+    app.rc
 
