@@ -18,6 +18,8 @@ SOURCES += main.cpp \
     olap/axiswidget.cpp \
     olap/cubewidget.cpp \
     olap/cubic.cpp \
+    olap/dialogolapflt.cpp \
+    olap/formfilter.cpp \
     olap/olapmodel.cpp \
     olap/tableview.cpp \
     dialogopen.cpp
@@ -26,6 +28,8 @@ HEADERS  += \
     olap/axiswidget.h \
     olap/cubewidget.h \
     olap/cubic.h \
+    olap/dialogolapflt.h \
+    olap/formfilter.h \
     olap/olapmodel.h \
     olap/tableview.h \
     dialogopen.h
@@ -33,7 +37,9 @@ HEADERS  += \
 FORMS    += \
     olap/axiswidget.ui \
     olap/cubewidget.ui \
-    dialogopen.ui
+    dialogopen.ui \
+    olap/dialogolapflt.ui \
+    olap/formfilter.ui
 
 RC_FILE = app.rc
 

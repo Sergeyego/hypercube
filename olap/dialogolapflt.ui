@@ -1,37 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DialogOpen</class>
- <widget class="QDialog" name="DialogOpen">
+ <class>DialogOlapFlt</class>
+ <widget class="QDialog" name="DialogOlapFlt">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>739</width>
-    <height>470</height>
+    <width>900</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Открыть отчет</string>
+   <string>Настроить фильтр</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Выберите отчет</string>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>-1</number>
      </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QTableView" name="tableView">
-     <property name="selectionMode">
-      <enum>QAbstractItemView::SingleSelection</enum>
-     </property>
-     <property name="selectionBehavior">
-      <enum>QAbstractItemView::SelectRows</enum>
-     </property>
-     <attribute name="verticalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
     </widget>
    </item>
    <item>
@@ -51,7 +38,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>DialogOpen</receiver>
+   <receiver>DialogOlapFlt</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -67,7 +54,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>DialogOpen</receiver>
+   <receiver>DialogOlapFlt</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

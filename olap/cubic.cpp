@@ -42,6 +42,14 @@ void hyper_cube::add(s_keys sk, double res){
     dc.push_back(line);
 }
 
+void hyper_cube::setData(const data_cube &d, int n)
+{
+    dc=d;
+    N=n;
+    line.dims.clear();
+    line.dims.resize(N);
+}
+
 void hyper_cube::dims(i_dims Y, i_dims X){
     QString xs, ys;
     (*pY).clear();
