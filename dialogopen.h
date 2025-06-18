@@ -19,10 +19,6 @@ public:
     explicit DialogOpen(QWidget *parent = 0);
     ~DialogOpen();
     int id() const;
-    QString title() const;
-    QString query() const;
-    QStringList axes() const;
-    int dec() const;
 
 private:
     Ui::DialogOpen *ui;
